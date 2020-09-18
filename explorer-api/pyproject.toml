@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "explorer-api"
-version = "0.1.0"
+version = "1.0.0"
 description = ""
 authors = ["Marcos Monteiro <marcosmmb90@gmail.com>"]
 
