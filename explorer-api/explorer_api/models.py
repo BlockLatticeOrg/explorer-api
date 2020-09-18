@@ -3,12 +3,6 @@ from typing import List, Dict
 from pydantic import BaseModel
 
 
-class AccountHistoryInput(BaseModel):
-    account: str
-    page: int = 0
-    count: int = 100
-
-
 class HistoryModel(BaseModel):
     type: str
     account: str
@@ -21,14 +15,7 @@ class HistoryModel(BaseModel):
 class AccountHistoryOutput(BaseModel):
     account: str
     history: List[HistoryModel]
-    previous: str
-
-
-class AccountInfoInput(BaseModel):
-    account: str
-    representative: bool = True
-    weight: bool = True
-    pending: bool = True
+    previous: str = None
 
 
 class AccountInfoOutput(BaseModel):
@@ -46,14 +33,10 @@ class AccountInfoOutput(BaseModel):
     weight: int
 
 
-class BlockInfoInput(BaseModel):
-    hash: str
-
-
 class BlockInfoContentModel(BaseModel):
     balance: str
-    destination: str
-    previous: str
+    destination: str = None
+    previous: str = None
     signature: str
 
 
@@ -67,18 +50,8 @@ class BlockInfoOutput(BaseModel):
     local_timestamp: int
 
 
-class DelegatorsInput(BaseModel):
-    account: str
-
-
 class DelegatorsOutput(BaseModel):
     delegators: Dict[str, int]
-
-
-class PendingInput(BaseModel):
-    account: str
-    count: int = 100
-    source: bool = True
 
 
 class BlockPendingModel(BaseModel):
