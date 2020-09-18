@@ -2,10 +2,11 @@ import json
 
 import httpx
 from fastapi import HTTPException
+from prettyconf import config
 
 
 def rpc(function):
-    caller = Caller("http://157.230.53.20:7076")
+    caller = Caller(config("NANO_NODE_URL"))
 
     @staticmethod
     def wrapper(*args, **kwargs):
