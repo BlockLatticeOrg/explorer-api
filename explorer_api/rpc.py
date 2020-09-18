@@ -6,31 +6,27 @@ from prettyconf import config
 
 
 def rpc(function):
-    caller = Caller(config("NANO_NODE_URL"))
-
     @staticmethod
     def wrapper(*args, **kwargs):
-        return caller.call(function(*args, **kwargs))
+        return Caller.call(function(*args, **kwargs))
 
     return wrapper
 
 
 class Caller:
-    def __init__(self, uri: str, headers: dict = None) -> None:
-        self.uri = uri
-        self.headers = headers or {
-            "Content-type": "application/json",
-            "Accept": "application/json",
-        }
+    uri = config("NANO_NODE_URL")
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
 
-    def call(self, data: dict) -> dict:
-        response = self._post(json.dumps(data)).json()
+    @classmethod
+    def call(cls, data: dict) -> dict:
+        response = cls._post(json.dumps(data)).json()
         if error := response.get("error"):
             raise HTTPException(status_code=400, detail=error)
         return response
 
-    def _post(self, data: str) -> httpx.Response:
-        return httpx.post(self.uri, data=data, headers=self.headers)
+    @classmethod
+    def _post(cls, data: str) -> httpx.Response:
+        return httpx.post(cls.uri, data=data, headers=cls.headers)
 
 
 class RPCNodeClient:
