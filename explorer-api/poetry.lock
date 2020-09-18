@@ -215,6 +215,17 @@ version = "0.13.1"
 dev = ["pre-commit", "tox"]
 
 [[package]]
+category = "main"
+description = "Separation of settings from code."
+name = "prettyconf"
+optional = false
+python-versions = "*"
+version = "2.1.0"
+
+[package.extras]
+aws = ["boto3"]
+
+[[package]]
 category = "dev"
 description = "library with cross-python path, ini-parsing, io, code, log facilities"
 name = "py"
@@ -384,7 +395,7 @@ python-versions = ">=3.6.1"
 version = "8.1"
 
 [metadata]
-content-hash = "d3bf9c65514637a12292e3f643b10201a7e7dcdb3f918e70c6235d545e94659a"
+content-hash = "6878ff609f8fce24e022d2da5630ec78d0b9fc6d4440bc3d001053f3e45ca5a1"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -473,6 +484,9 @@ pathspec = [
 pluggy = [
     {file = "pluggy-0.13.1-py2.py3-none-any.whl", hash = "sha256:966c145cd83c96502c3c3868f50408687b38434af77734af1e9ca461a4081d2d"},
     {file = "pluggy-0.13.1.tar.gz", hash = "sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0"},
+]
+prettyconf = [
+    {file = "prettyconf-2.1.0.tar.gz", hash = "sha256:358af2f0d722999eaa4b3e0eb790fd10fad33bcb697d9bcacd53b58ff7fb342e"},
 ]
 py = [
     {file = "py-1.9.0-py2.py3-none-any.whl", hash = "sha256:366389d1db726cd2fcfc79732e75410e5fe4d31db13692115529d34069a043c2"},

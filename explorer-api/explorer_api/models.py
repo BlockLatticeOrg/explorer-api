@@ -1,6 +1,6 @@
-from typing import List, Dict
+from typing import List, Dict, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
 
 class HistoryModel(BaseModel):
@@ -14,8 +14,12 @@ class HistoryModel(BaseModel):
 
 class AccountHistoryOutput(BaseModel):
     account: str
-    history: List[HistoryModel]
-    previous: str = None
+    history: Optional[List[HistoryModel]]
+    previous: Optional[str]
+
+    @validator("history", pre=True, always=True)
+    def validate_history(cls, value):
+        return [] if not value else value
 
 
 class AccountInfoOutput(BaseModel):
@@ -35,8 +39,8 @@ class AccountInfoOutput(BaseModel):
 
 class BlockInfoContentModel(BaseModel):
     balance: str
-    destination: str = None
-    previous: str = None
+    destination: Optional[str]
+    previous: Optional[str]
     signature: str
 
 
@@ -56,7 +60,7 @@ class DelegatorsOutput(BaseModel):
 
 class BlockPendingModel(BaseModel):
     amount: int
-    source: str = None
+    source: Optional[str]
 
 
 class PendingOutput(BaseModel):
