@@ -6,16 +6,21 @@ from fastapi import HTTPException
 
 def rpc(function):
     caller = Caller("http://157.230.53.20:7076")
+
     @staticmethod
     def wrapper(*args, **kwargs):
         return caller.call(function(*args, **kwargs))
+
     return wrapper
 
 
 class Caller:
-    def __init__(self, uri: str, headers: dict=None) -> None:
+    def __init__(self, uri: str, headers: dict = None) -> None:
         self.uri = uri
-        self.headers = headers or {'Content-type': 'application/json', 'Accept': 'application/json'}
+        self.headers = headers or {
+            "Content-type": "application/json",
+            "Accept": "application/json",
+        }
 
     def call(self, data: dict) -> dict:
         response = self._post(json.dumps(data)).json()
@@ -29,7 +34,7 @@ class Caller:
 
 class RPCNodeClient:
     @rpc
-    def account_history(account: str, page: int=0, count: int=100) -> dict:
+    def account_history(account: str, page: int = 0, count: int = 100) -> dict:
         return {
             "action": "account_history",
             "account": account,
@@ -38,7 +43,12 @@ class RPCNodeClient:
         }
 
     @rpc
-    def account_info(account: str, representative: bool=True, weight: bool=True, pending: bool=True) -> dict:
+    def account_info(
+        account: str,
+        representative: bool = True,
+        weight: bool = True,
+        pending: bool = True,
+    ) -> dict:
         return {
             "action": "account_info",
             "account": account,
@@ -49,7 +59,7 @@ class RPCNodeClient:
 
     @rpc
     def block_info(_hash: str) -> dict:
-        return {  
+        return {
             "action": "block_info",
             "json_block": True,
             "hash": _hash,
@@ -63,7 +73,7 @@ class RPCNodeClient:
         }
 
     @rpc
-    def pending(account: str, count: int=100, source: bool=True) -> dict:
+    def pending(account: str, count: int = 100, source: bool = True) -> dict:
         return {
             "action": "pending",
             "account": account,
