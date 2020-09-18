@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from routers import accounts, blocks
+from .routers import accounts, blocks
 
 app = FastAPI(
     title="BlockLattice.org Explorer API",
