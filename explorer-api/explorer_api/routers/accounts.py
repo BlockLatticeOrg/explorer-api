@@ -2,13 +2,13 @@ from typing import Optional
 
 from fastapi import APIRouter
 
-from explorer_api.models import (
+from ..models import (
     AccountHistoryOutput,
     AccountInfoOutput,
     DelegatorsOutput,
     PendingOutput,
 )
-from explorer_api.rpc import RPCNodeClient
+from ..rpc import RPCNodeClient
 
 router = APIRouter()
 

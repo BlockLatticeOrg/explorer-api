@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from explorer_api import __version__
+from . import __version__
 from .routers import accounts, blocks
 
 app = FastAPI(

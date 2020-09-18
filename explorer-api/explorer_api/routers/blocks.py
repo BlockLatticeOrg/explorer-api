@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from explorer_api.models import BlockInfoOutput
-from explorer_api.rpc import RPCNodeClient
+from ..models import BlockInfoOutput
+from ..rpc import RPCNodeClient
 
 router = APIRouter()
 
