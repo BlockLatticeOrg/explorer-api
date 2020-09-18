@@ -1,6 +1,7 @@
 import json
 
 import httpx
+from fastapi import HTTPException
 
 
 def rpc(function):
@@ -17,7 +18,10 @@ class Caller:
         self.headers = headers or {'Content-type': 'application/json', 'Accept': 'application/json'}
 
     def call(self, data: dict) -> dict:
-        return self._post(json.dumps(data)).json()
+        response = self._post(json.dumps(data)).json()
+        if error := response.get("error"):
+            raise HTTPException(status_code=400, detail=error)
+        return response
 
     def _post(self, data: str) -> httpx.Response:
         return httpx.post(self.uri, data=data, headers=self.headers)
