@@ -2,14 +2,19 @@ from typing import Optional
 
 from fastapi import APIRouter
 
-from explorer_api.models import AccountHistoryOutput, AccountInfoOutput, DelegatorsOutput, PendingOutput
+from explorer_api.models import (
+    AccountHistoryOutput,
+    AccountInfoOutput,
+    DelegatorsOutput,
+    PendingOutput,
+)
 from explorer_api.rpc import RPCNodeClient
 
 router = APIRouter()
 
 
 @router.get("/{account}/history", response_model=AccountHistoryOutput)
-async def account_info(
+async def account_history(
     account: str, page: Optional[int] = 0, count: Optional[int] = 100
 ):
     return RPCNodeClient.account_history(account, page=page, count=count)
@@ -33,5 +38,7 @@ async def delegators(account: str):
 
 
 @router.get("/{account}/pending", response_model=PendingOutput)
-async def pending(account: str, count: Optional[int]=100, source: Optional[bool]=True):
+async def pending(
+    account: str, count: Optional[int] = 100, source: Optional[bool] = True
+):
     return RPCNodeClient.pending(account, count=count, source=source)
