@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 
+from explorer_api import __version__
 from .routers import accounts, blocks
 
 app = FastAPI(
     title="BlockLattice.org Explorer API",
-    version="1.0.0",
+    version=__version__,
 )
 
 
