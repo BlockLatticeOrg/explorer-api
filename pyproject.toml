@@ -10,6 +10,7 @@ fastapi = "^0.61.1"
 httpx = "^0.14.3"
 uvicorn = "^0.11.8"
 prettyconf = "^2.1.0"
+mock = "^4.0.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
