@@ -5,8 +5,7 @@ from fastapi import HTTPException
 from prettyconf import config
 
 
-def rpc_call(function):
-    @staticmethod
+def rpc(function):
     def wrapper(*args, **kwargs):
         return Caller.call(function(*args, **kwargs))
 
