@@ -8,7 +8,8 @@ def mock_rpc(function):
     return wrapper
 
 
-mock.patch("explorer_api.utils.rpc", side_effect=mock_rpc).start()
+mocker = mock.patch("explorer_api.utils.rpc", side_effect=mock_rpc)
+mocker.start()
 
 from explorer_api import rpc
 
@@ -66,3 +67,6 @@ class TestRPC:
             "source": False,
         }
         assert response == expected_response
+
+
+mocker.stop()
