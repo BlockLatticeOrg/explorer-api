@@ -1,7 +1,5 @@
 import mock
 
-from explorer_api import utils
-
 
 def mock_rpc(function):
     def wrapper(*args, **kwargs):
