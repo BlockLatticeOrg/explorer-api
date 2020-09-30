@@ -1,17 +1,4 @@
-import mock
-
-
-def mock_rpc(function):
-    def wrapper(*args, **kwargs):
-        return function(*args, **kwargs)
-
-    return wrapper
-
-
-mocker = mock.patch("explorer_api.utils.rpc", side_effect=mock_rpc)
-mocker.start()
-
-from explorer_api import rpc
+from explorer_api import rpc, utils
 
 
 class TestRPC:
@@ -20,7 +7,8 @@ class TestRPC:
     )
     example_hash = "CD0A56F7729EBBF62A81235AF34D1D69362F1FCD2542734BD8FEBD9D2EB6C130"
 
-    def test_account_history(self):
+    def test_account_history(self, monkeypatch):
+        monkeypatch.setattr(utils.Caller, "call", lambda x: x)
         response = rpc.account_history(self.example_address, 5, 2)
         expected_response = {
             "action": "account_history",
@@ -30,7 +18,8 @@ class TestRPC:
         }
         assert response == expected_response
 
-    def test_account_info(self):
+    def test_account_info(self, monkeypatch):
+        monkeypatch.setattr(utils.Caller, "call", lambda x: x)
         response = rpc.account_info(self.example_address, True, False, True)
         expected_response = {
             "action": "account_info",
@@ -41,7 +30,8 @@ class TestRPC:
         }
         assert response == expected_response
 
-    def test_block_info(self):
+    def test_block_info(self, monkeypatch):
+        monkeypatch.setattr(utils.Caller, "call", lambda x: x)
         response = rpc.block_info(self.example_hash)
         expected_response = {
             "action": "block_info",
@@ -50,7 +40,8 @@ class TestRPC:
         }
         assert response == expected_response
 
-    def test_delegators(self):
+    def test_delegators(self, monkeypatch):
+        monkeypatch.setattr(utils.Caller, "call", lambda x: x)
         response = rpc.delegators(self.example_address)
         expected_response = {
             "action": "delegators",
@@ -58,7 +49,8 @@ class TestRPC:
         }
         assert response == expected_response
 
-    def test_pending(self):
+    def test_pending(self, monkeypatch):
+        monkeypatch.setattr(utils.Caller, "call", lambda x: x)
         response = rpc.pending(self.example_address, 5, False)
         expected_response = {
             "action": "pending",
@@ -67,6 +59,3 @@ class TestRPC:
             "source": False,
         }
         assert response == expected_response
-
-
-mocker.stop()

@@ -8,7 +8,7 @@ from ..models import (
     DelegatorsOutput,
     PendingOutput,
 )
-from . import rpc
+from .. import rpc
 
 router = APIRouter()
 
