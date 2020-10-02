@@ -45,6 +45,6 @@ pending_expected_response = {
 )
 def test_accounts_endpoints(monkeypatch, test_client, endpoint, expected_response):
     monkeypatch.setattr(Caller, "call", lambda _: expected_response)
-    response = test_client.get(f"/accounts/{example_address}/{endpoint}")
+    response = test_client.get(f"/v1/accounts/{example_address}/{endpoint}")
     assert response.status_code == 200
     assert response.json() == expected_response

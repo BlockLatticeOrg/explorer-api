@@ -22,6 +22,6 @@ expected_response = {
 
 def test_blocks_endpoint(monkeypatch, test_client):
     monkeypatch.setattr(Caller, "call", lambda _: expected_response)
-    response = test_client.get(f"/blocks/{example_hash}")
+    response = test_client.get(f"/v1/blocks/{example_hash}")
     assert response.status_code == 200
     assert response.json() == expected_response

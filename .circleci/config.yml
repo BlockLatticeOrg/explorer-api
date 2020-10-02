@@ -1,0 +1,42 @@
+version: 2.1
+
+jobs:
+
+  # Code Linting
+  lint:
+    docker:
+      - image: circleci/python:3.8.5-buster
+    steps:
+      - checkout
+      - run:
+          name: Install Python Dependencies
+          command: |
+            poetry install
+      - run:
+          name: Lint Code
+          command: |
+            poetry run flake8 --ignore=E501,W503,E203
+
+  # API Tests
+  test:
+    docker:
+      - image: circleci/python:3.8.5-buster
+        user: root
+        environment:
+            NANO_NODE_IP: 0.0.0.0
+    steps:
+      - checkout
+      - run:
+          name: Install Python Dependencies
+          command: |
+            poetry install
+      - run:
+          name: Run Tests
+          command: |
+            poetry run coverage run -m pytest
+
+workflows:
+  main:
+    jobs:
+      - lint
+      - test

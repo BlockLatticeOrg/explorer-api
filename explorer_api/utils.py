@@ -2,7 +2,8 @@ import json
 
 import httpx
 from fastapi import HTTPException
-from prettyconf import config
+
+from . import settings
 
 
 def rpc(function):
@@ -13,7 +14,7 @@ def rpc(function):
 
 
 class Caller:
-    uri = config("NANO_NODE_URL")
+    uri = settings.NANO_NODE_URL
     headers = {"Content-type": "application/json", "Accept": "application/json"}
 
     @classmethod
