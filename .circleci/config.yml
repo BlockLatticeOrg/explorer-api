@@ -23,7 +23,7 @@ jobs:
       - image: circleci/python:3.8.5-buster
         user: root
         environment:
-            NANO_NODE_URL: 0.0.0.0
+            NANO_NODE_IP: 0.0.0.0
     steps:
       - checkout
       - run:
