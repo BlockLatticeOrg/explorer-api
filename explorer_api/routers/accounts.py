@@ -8,7 +8,7 @@ from ..models import (
     DelegatorsOutput,
     PendingOutput,
 )
-from ..rpc import RPCNodeClient
+from .. import rpc
 
 router = APIRouter()
 
@@ -17,7 +17,7 @@ router = APIRouter()
 async def account_history(
     account: str, page: Optional[int] = 0, count: Optional[int] = 100
 ):
-    return RPCNodeClient.account_history(account, page=page, count=count)
+    return rpc.account_history(account, page=page, count=count)
 
 
 @router.get("/{account}/info", response_model=AccountInfoOutput)
@@ -27,18 +27,18 @@ async def account_info(
     weight: Optional[bool] = True,
     pending: Optional[bool] = True,
 ):
-    return RPCNodeClient.account_info(
+    return rpc.account_info(
         account, representative=representative, weight=weight, pending=pending
     )
 
 
 @router.get("/{account}/delegators", response_model=DelegatorsOutput)
 async def delegators(account: str):
-    return RPCNodeClient.delegators(account)
+    return rpc.delegators(account)
 
 
 @router.get("/{account}/pending", response_model=PendingOutput)
 async def pending(
     account: str, count: Optional[int] = 100, source: Optional[bool] = True
 ):
-    return RPCNodeClient.pending(account, count=count, source=source)
+    return rpc.pending(account, count=count, source=source)
