@@ -2,13 +2,13 @@ from typing import Optional
 
 from fastapi import APIRouter
 
+from .. import rpc
 from ..models import (
     AccountHistoryOutput,
     AccountInfoOutput,
     DelegatorsOutput,
     PendingOutput,
 )
-from .. import rpc
 
 router = APIRouter()
 

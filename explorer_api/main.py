@@ -3,7 +3,6 @@ from fastapi import FastAPI
 from . import __version__
 from .routers import accounts, blocks
 
-
 app = FastAPI(docs_url=False, redoc_url=False)
 
 v1 = FastAPI(
