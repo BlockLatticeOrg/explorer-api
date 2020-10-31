@@ -55,7 +55,29 @@ Within the docs, you can test the API with real data as long as you setup a node
 NANO_NODE_IP=<real-node-ip>
 ```
 
-If you don't have a remote or local node, you can learn how to setup your own Nano node [here](https://docs.nano.org/running-a-node/overview/). 
+If you don't have a remote or local node, you can learn how to setup your own Nano node [here](https://docs.nano.org/running-a-node/overview/).
 _Note: instead of running with IPv6 `[::1]`, you should use IPv4 `0.0.0.0` when running locally._
 
 After setting up a node, you now can test directly from the browser at [http://127.0.0.1:8000/v1/docs](http://127.0.0.1:8000/v1/docs), where you can use the endpoints and request real data from the network. It's important to note that if your node is still not fully synced, you may not be able to extract updated data.
+
+
+### Contributing
+
+When adding a new feature or refactoring some code, you must create a new branch to upload it.
+
+```bash
+$ git checkout -b <new-feature>
+```
+
+Before every commit, run the automatic tester and linter:
+
+```bash
+$ make tester
+$ make linter
+```
+
+If you want to check if the commit will pass:
+
+```bash
+$ pre-commit
+```

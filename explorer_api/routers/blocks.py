@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from ..models import BlockInfoOutput
 from .. import rpc
+from ..models import BlockInfoOutput
 
 router = APIRouter()
 

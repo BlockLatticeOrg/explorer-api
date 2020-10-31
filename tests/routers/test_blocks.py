@@ -1,6 +1,5 @@
 from explorer_api.utils import Caller
 
-
 example_address = "nano_3x4ui45q1cw8hydmfdn4ec5ijfdqi4ryp14g4ayh71jcdkwmddrq7ca9xzn9"
 example_hash = "CD0A56F7729EBBF62A81235AF34D1D69362F1FCD2542734BD8FEBD9D2EB6C130"
 

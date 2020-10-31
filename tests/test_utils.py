@@ -1,7 +1,8 @@
 import mock
 import pytest
-from explorer_api.utils import Caller, rpc
 from fastapi import HTTPException
+
+from explorer_api.utils import Caller, rpc
 
 
 class TestCaller:
