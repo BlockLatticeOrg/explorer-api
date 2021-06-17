@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.8-slim
 
 EXPOSE 8000
 
