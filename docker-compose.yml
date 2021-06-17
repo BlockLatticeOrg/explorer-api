@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  explorer-api:
+    build:
+      context: .
+    container_name: explorer-api
+    image: blocklattice.org/explorer-api
+    restart: unless-stopped
+    ports:
+      - 8000:8000
