@@ -6,7 +6,23 @@ The Explorer API is one of the parts of the [BlockLattice.org](https://blocklatt
 If you want to contribute to this project, this document will show you how to setup this application locally so you can test on your machine and improve upon it.
 
 
-## Installation
+# Installation
+
+## Docker-composer builder
+
+Automatically build via Shell (Unix / Linux)
+
+Build and deploy:
+```bash
+# ./build-docker.sh
+```
+
+Destroy:
+```bash
+# ./destroy-docker.sh
+```
+
+## Run Manually
 
 In order to run this API, you must have [Python 3.8+](https://www.python.org/downloads/) and [Poetry](https://python-poetry.org/) installed.
 
